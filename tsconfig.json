@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "module": "NodeNext",
+
     // project options
     "lib": ["ESNext", "dom"], // specifies which default set of type definitions to use ("DOM", "ES6", etc)
     "outDir": "out", // .js (as well as .d.ts, .js.map, etc.) files will be emitted into this directory.,
