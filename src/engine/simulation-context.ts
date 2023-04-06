@@ -5,4 +5,6 @@ export interface SimulationContext {
   simulation: Simulation;
   field: Field | undefined;
   iteration: number;
+  light: number;
+  isDay: boolean;
 }

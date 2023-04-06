@@ -1,3 +1,5 @@
+import { Configuration } from '../configuration/configuration';
+import { Algae } from '../entities/algae';
 import { Entity } from '../entities/entity';
 import { Field } from '../entities/field';
 import { SeaCow } from '../entities/sea-cow';
@@ -8,6 +10,8 @@ import { SeaGrass } from '../entities/sea-grass';
  */
 export class Simulation {
   // settings
+  public configuration: Configuration;
+
   // output
   public *getEntities() {
     for (const row of this.fields) {
@@ -31,14 +35,25 @@ export class Simulation {
 
   /**
    * Initialize the simulation.
-   * @param fieldCount Number of fields in a square to add.
    */
-  public init(fieldCount: number) {
-    for (let y = 0; y < fieldCount; y++) {
+  public init(configuration: Configuration) {
+    this.configuration = configuration;
+
+    for (let y = 0; y < configuration.map.height; y++) {
       const row: Field[] = [];
       this.fields.push(row);
-      for (let x = 0; x < fieldCount; x++) {
-        row.push(new Field());
+      for (let x = 0; x < configuration.map.width; x++) {
+        const field = new Field();
+
+        // Configure field starting entities
+        const algae = new Algae();
+        algae.fill =
+          Math.random() *
+            (configuration.algae.maximum - configuration.algae.minimum) +
+          configuration.algae.minimum;
+        field.entities.push(algae);
+
+        row.push(field);
       }
     }
   }
@@ -50,14 +65,21 @@ export class Simulation {
   public run(count: number) {
     for (let i = 0; i < count; i++) {
       console.log(`iteration: ${i}`);
+      // 8h iteration
       for (const entity of this.getFields()) {
         entity.step({
           simulation: this,
           field: undefined,
           iteration: i,
+          light: this.getLight(),
+          isDay: i % 3 != 0,
         });
       }
     }
+  }
+
+  private getLight(): number {
+    return 1;
   }
 
   public draw() {

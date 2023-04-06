@@ -1,0 +1,30 @@
+{
+  "iterations": 38,
+  "map": {
+    "width": 30,
+    "height": 30
+  },
+  "weather": [
+    {
+      "iteration": 30,
+      "light": 1
+    },
+    {
+      "iteration": 3,
+      "light": 0.2
+    },
+    {
+      "iteration": 5,
+      "light": 1.5
+    }
+  ],
+  "sea-cow": {
+    "maximum": 10,
+    "minimum": 0
+  },
+  "algae": {
+    "maximum": 0.2,
+    "minimum": 0.1,
+    "minimumLightToGrow": 0.5
+  }
+}
