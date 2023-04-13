@@ -71,15 +71,23 @@ export class Simulation {
           simulation: this,
           field: undefined,
           iteration: i,
-          light: this.getLight(),
+          light: this.getLight(entity),
           isDay: i % 3 != 0,
         });
       }
     }
   }
 
-  private getLight(): number {
-    return 1;
+  private getLight(field: Field): number {
+    let light = 1;
+
+    for (const entity of field.entities) {
+      if (entity.type === 'Algae') {
+        light *= (<Algae>entity).opacity;
+      }
+    }
+
+    return light;
   }
 
   public draw() {

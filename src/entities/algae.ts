@@ -23,7 +23,8 @@ export class Algae extends Entity {
 
     // light sensitive if
     if (
-      context.light >= context.simulation.configuration.algae.minimumLightToGrow
+      context.light / this.opacity >=
+      context.simulation.configuration.algae.minimumLightToGrow
     ) {
       // active
     } else {
