@@ -13,7 +13,7 @@ let simulation = new Simulation();
 const configuration = <Configuration>(
   JSON.parse(
     fs
-      .readFileSync(path.join(__dirname, '../src/simulations/simulation.json'))
+      .readFileSync(path.join(__dirname, '../simulations/simulation.json'))
       .toString()
   )
 );
@@ -25,3 +25,10 @@ simulation.draw();
 simulation.run(configuration.iterations);
 
 simulation.draw();
+
+fs.writeFileSync(
+  path.join(__dirname, '../simulations/result.json'),
+  JSON.stringify(simulation.fields, undefined, 2)
+);
+
+console.log('end');

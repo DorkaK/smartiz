@@ -1,8 +1,8 @@
 {
   "iterations": 38,
   "map": {
-    "width": 30,
-    "height": 30
+    "width": 3,
+    "height": 3
   },
   "weather": [
     {

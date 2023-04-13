@@ -1,0 +1,107 @@
+[
+  [
+    {
+      "type": "Field",
+      "entities": [
+        {
+          "type": "Algae",
+          "fill": 0.14721685711747767
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "Field",
+      "entities": [
+        {
+          "type": "Algae",
+          "fill": 0.14037217655174497
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "Field",
+      "entities": [
+        {
+          "type": "Algae",
+          "fill": 0.13858219969541807
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ],
+  [
+    {
+      "type": "Field",
+      "entities": [
+        {
+          "type": "Algae",
+          "fill": 0.16482297929125322
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "Field",
+      "entities": [
+        {
+          "type": "Algae",
+          "fill": 0.17961664259904217
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "Field",
+      "entities": [
+        {
+          "type": "Algae",
+          "fill": 0.10517935023555276
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ],
+  [
+    {
+      "type": "Field",
+      "entities": [
+        {
+          "type": "Algae",
+          "fill": 0.15287086077930145
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "Field",
+      "entities": [
+        {
+          "type": "Algae",
+          "fill": 0.18978815599129015
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "Field",
+      "entities": [
+        {
+          "type": "Algae",
+          "fill": 0.11730355391316445
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+]

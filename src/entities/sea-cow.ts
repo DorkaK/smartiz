@@ -3,6 +3,8 @@ import { Entity } from './entity';
 import { SeaGrass } from './sea-grass';
 
 export class SeaCow extends Entity {
+  public type: string = 'Sea cow';
+
   // speed 24 km/h max, 8 km/h normal, ? km/h during eating
 
   public override step(context: SimulationContext): void {

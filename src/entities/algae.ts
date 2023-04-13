@@ -2,6 +2,8 @@ import { SimulationContext } from '../engine/simulation-context';
 import { Entity } from './entity';
 
 export class Algae extends Entity {
+  public type: string = 'Algae';
+
   /**
    * Fill percentage (0-1) in the field.
    */
@@ -27,12 +29,10 @@ export class Algae extends Entity {
     } else {
       // sleep
     }
-
-    console.log('algae');
   }
 
   // growth rate / nitrate effect?
-  // oxigen output
+  // oxygen output
   // possible duplication of size within hours
   // 1 month to reach 1 fill
 }

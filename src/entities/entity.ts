@@ -1,6 +1,8 @@
 import { SimulationContext } from '../engine/simulation-context';
 
-export class Entity {
+export abstract class Entity {
+  public abstract type: string;
+
   /**
    * Executes a step in the simulation for this entity.
    */
