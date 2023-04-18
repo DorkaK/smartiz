@@ -36,4 +36,11 @@ export class Algae extends Entity {
   // oxygen output
   // possible duplication of size within hours
   // 1 month to reach 1 fill
+
+  constructor(fill: number, opacity: number, growthRate: number){
+    super();
+    this.fill = fill;
+    this. growthRate = growthRate;
+  }
+
 }
