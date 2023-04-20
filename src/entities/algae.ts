@@ -7,7 +7,9 @@ export class Algae extends Entity {
   /**
    * Fill percentage (0-1) in the field.
    */
-  public fill: number = 0;
+  public get fill(): number {
+    return Math.random()
+  }
 
   /**
    * How much light (0-1) can penetrate the algae field.
@@ -36,11 +38,4 @@ export class Algae extends Entity {
   // oxygen output
   // possible duplication of size within hours
   // 1 month to reach 1 fill
-
-  constructor(fill: number, opacity: number, growthRate: number){
-    super();
-    this.fill = fill;
-    this. growthRate = growthRate;
-  }
-
 }
