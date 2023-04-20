@@ -15,3 +15,5 @@ let storm = new Weather(0.25);
 let weather_options = []
 weather_options.push(Weather)
 console.log(weather_options)
+
+// align with configuration
