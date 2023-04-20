@@ -7,9 +7,7 @@ export class Algae extends Entity {
   /**
    * Fill percentage (0-1) in the field.
    */
-  public get fill(): number {
-    return Math.random()
-  }
+  public fill: number = 0;
 
   /**
    * How much light (0-1) can penetrate the algae field.
@@ -18,24 +16,40 @@ export class Algae extends Entity {
     return 1 - this.fill;
   }
 
-  growthRate: number;
+  // growthRate: number;
 
   public override step(context: SimulationContext): void {
-    // phase sleep, active, active
-
     // light sensitive if
     if (
       context.light / this.opacity >=
       context.simulation.configuration.algae.minimumLightToGrow
     ) {
       // active
+      // make oxygen
+      // grow
+      fill = fill * 1.5; // light level + get it from configuration
+      // fill MAX 1!!!
+      // go to next field
+      // context.field.x, context.field.y
+      // for (const field of context.simulation.getFields()) {
+      //   if (field.x + 1 == context.field.x && field.y == context.field.y) {
+
+      //   }
+      // }
+
+      // no algae => add algae
+      // has algae => add to fill
+      // has algae fill 1 => next field
+      // no more field => overgrow => death / no action
+      // death => compost => less oxigen, more nitrogen
     } else {
       // sleep
+      // oxigen consumption
+      // no oxygen => death
     }
   }
 
   // growth rate / nitrate effect?
-  // oxygen output
   // possible duplication of size within hours
   // 1 month to reach 1 fill
 }

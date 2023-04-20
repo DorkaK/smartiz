@@ -3,7 +3,7 @@ import { Simulation } from './simulation';
 
 export interface SimulationContext {
   simulation: Simulation;
-  field: Field | undefined;
+  field: Field;
   iteration: number;
   light: number;
   isDay: boolean;

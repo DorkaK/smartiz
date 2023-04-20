@@ -69,23 +69,32 @@ export class Simulation {
       for (const entity of this.getFields()) {
         entity.step({
           simulation: this,
-          field: undefined,
+          field: entity,
           iteration: i,
-          light: this.getLight(entity),
+          light: this.getLight(entity, i),
           isDay: i % 3 != 0,
         });
       }
     }
   }
 
-  private getLight(field: Field): number {
+  /**
+   * Calculate the current light level in the simulation.
+   */
+  private getLight(field: Field, iteration: number): number {
     let light = 1;
 
+    // Multiply with algae fill, because of opacity
     for (const entity of field.entities) {
       if (entity.type === 'Algae') {
         light *= (<Algae>entity).opacity;
       }
     }
+
+    // TODO: Weather
+    // this.configuration
+    // TODO: Day part
+    // iteration
 
     return light;
   }

@@ -12,8 +12,7 @@ export class Field extends Entity {
   public override step(context: SimulationContext): void {
     for (const entity of [...this.entities]) {
       entity.step({
-        ...context,
-        field: this,
+        ...context
       });
     }
   }
