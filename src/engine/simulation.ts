@@ -4,6 +4,7 @@ import { Entity } from '../entities/entity';
 import { Field } from '../entities/field';
 import { SeaCow } from '../entities/sea-cow';
 import { SeaGrass } from '../entities/sea-grass';
+import { WeatherGenerator } from '../weather/weather-generator';
 
 /**
  * Simulation runner.
@@ -11,6 +12,8 @@ import { SeaGrass } from '../entities/sea-grass';
 export class Simulation {
   // settings
   public configuration: Configuration;
+
+  public weatherGenerator: WeatherGenerator = new WeatherGenerator();
 
   // output
   public *getEntities() {
@@ -31,7 +34,27 @@ export class Simulation {
     }
   }
 
+  /**
+   * Fields with y and x coordinates.
+   * 
+   * @example fields[y][x]
+   */
   public fields: Field[][] = [];
+
+  public getField(x: number, y: number): Field {
+    if (this.fields.length <= y) throw new Error('Y is outside of the simulation boundries.');
+    if (this.fields[y]!.length <= x) throw new Error('X is outside of the simulation boundries.');
+
+    return this.fields[y]![x]!;
+  }
+
+  public tryGetField(x: number, y: number): Field | undefined {
+    if (x < 0 || y < 0) return undefined;
+    if (this.fields.length <= y) return undefined;
+    if (this.fields[y]!.length <= x) return undefined;
+
+    return this.fields[y]![x]!;
+  }
 
   /**
    * Initialize the simulation.
@@ -43,13 +66,13 @@ export class Simulation {
       const row: Field[] = [];
       this.fields.push(row);
       for (let x = 0; x < configuration.map.width; x++) {
-        const field = new Field();
+        const field = new Field(x, y);
 
         // Configure field starting entities
         const algae = new Algae();
         algae.fill =
           Math.random() *
-            (configuration.algae.maximum - configuration.algae.minimum) +
+          (configuration.algae.maximum - configuration.algae.minimum) +
           configuration.algae.minimum;
         field.entities.push(algae);
 
@@ -91,6 +114,7 @@ export class Simulation {
       }
     }
 
+    const weather = this.weatherGenerator.getWeather(iteration);
     // TODO: Weather
     // this.configuration
     // TODO: Day part

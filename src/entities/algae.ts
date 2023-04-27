@@ -27,24 +27,29 @@ export class Algae extends Entity {
       // active
       // make oxygen
       // grow
-      fill = fill * 1.5; // light level + get it from configuration
-      // fill MAX 1!!!
-      // go to next field
-      // context.field.x, context.field.y
-      // for (const field of context.simulation.getFields()) {
-      //   if (field.x + 1 == context.field.x && field.y == context.field.y) {
+      this.fill = this.fill * 1.5; // light level + get it from configuration
+      if (this.fill > 1) {
+        // go to next field
+        // context.field.x, context.field.y
 
-      //   }
-      // }
+        let nextField = context.simulation.tryGetField(context.field.x + 1, context.field.y)
+        if (nextField) {
+          // nextField
+        }
+        else {
 
-      // no algae => add algae
-      // has algae => add to fill
-      // has algae fill 1 => next field
-      // no more field => overgrow => death / no action
-      // death => compost => less oxigen, more nitrogen
+        }
+
+        // no algae => add algae
+        // has algae => add to fill
+        // has algae fill 1 => next field
+        // no more field => overgrow => death / no action
+        // death => compost => less oxygen, more nitrogen
+      }
+
     } else {
       // sleep
-      // oxigen consumption
+      // oxygen consumption
       // no oxygen => death
     }
   }
