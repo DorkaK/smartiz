@@ -19,10 +19,16 @@ export interface Algae {
   minimumLightToGrow: number;
 }
 
+export interface SeaGrass {
+  maximum: number;
+  minimum: number;
+}
+
 export interface Configuration {
   iterations: number;
   map: Map;
   weather: Weather[];
   'sea-cow': SeaCow;
+  'sea-grass' : SeaGrass;
   algae: Algae;
 }

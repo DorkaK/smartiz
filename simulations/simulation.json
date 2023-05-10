@@ -26,5 +26,9 @@
     "maximum": 0.2,
     "minimum": 0.1,
     "minimumLightToGrow": 0.5
+  },
+  "sea-grass": {
+    "maximum": 0.7,
+    "minimum": 0.1
   }
 }

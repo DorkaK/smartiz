@@ -76,6 +76,13 @@ export class Simulation {
           configuration.algae.minimum;
         field.entities.push(algae);
 
+        const seaGrass = new SeaGrass();
+        seaGrass.fill = 
+          Math.random() *
+          (configuration['sea-grass'].maximum - configuration['sea-grass'].minimum) +
+          configuration['sea-grass'].minimum;
+        field.entities.push(seaGrass);
+
         row.push(field);
       }
     }
