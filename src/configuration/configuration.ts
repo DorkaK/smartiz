@@ -22,6 +22,7 @@ export interface Algae {
 export interface SeaGrass {
   maximum: number;
   minimum: number;
+  rate_of_growth : number;
 }
 
 export interface Configuration {

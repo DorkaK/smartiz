@@ -19,32 +19,80 @@ export class SeaGrass extends Entity {
       if (growth <= 1) {
         this.fill = growth;
       }
+
+      if (growth > 1) {
+        this.fill = 1;
+      }
     }
 
     // expansion phase
     if (this.fill == 1) {
+      let isThereGrass = false
       let nextField = context.simulation.tryGetField(context.field.x + 1, context.field.y)
       if (nextField) {
         for (const entity of nextField.entities) {
-          if (entity.type == 'Sea grass' && (entity as SeaGrass).fill <= 1 - 0.01) {
+          if (entity.type == 'Sea grass' && (entity as SeaGrass).fill <= 1 - 0.01 && !isThereGrass) {
             (entity as SeaGrass).fill += 0.01;
+            isThereGrass = true;
+
           }
         }
+        if (!isThereGrass){
+          // TODO : create a new grass
+          const seaGrass = new SeaGrass ();
+          context.field.entities.push(seaGrass);
+        }
+        isThereGrass = false;
       }
 
       nextField = context.simulation.tryGetField(context.field.x - 1, context.field.y)
       if (nextField) {
-        // TODO
+        
+        for (const entity of nextField.entities) {
+          if (entity.type == 'Sea grass' && (entity as SeaGrass).fill <= 1 - 0.01 && !isThereGrass ) {
+            (entity as SeaGrass).fill += 0.01;
+            isThereGrass = true;
+          }
+        }
+        if (!isThereGrass){
+          
+          const seaGrass = new SeaGrass ();
+          context.field.entities.push(seaGrass);
+        }
+        isThereGrass = false;
       }
 
       nextField = context.simulation.tryGetField(context.field.x, context.field.y + 1)
       if (nextField) {
-        // TODO
+        
+        for (const entity of nextField.entities) {
+          if (entity.type == 'Sea grass' && (entity as SeaGrass).fill <= 1 - 0.01 && !isThereGrass) {
+            (entity as SeaGrass).fill += 0.01;
+            isThereGrass = true;
+          }
+        }
+        if (!isThereGrass){
+          
+          const seaGrass = new SeaGrass ();
+          context.field.entities.push(seaGrass);
+        }
+        isThereGrass = false;
       }
 
       nextField = context.simulation.tryGetField(context.field.x, context.field.y - 1)
       if (nextField) {
-        // TODO
+        
+        for (const entity of nextField.entities) {
+          if (entity.type == 'Sea grass' && (entity as SeaGrass).fill <= 1 - 0.01 && !isThereGrass) {
+            (entity as SeaGrass).fill += 0.01;
+            isThereGrass = true;
+          }
+        }
+        if (!isThereGrass){
+          
+          const seaGrass = new SeaGrass ();
+          context.field.entities.push(seaGrass);
+        }
       }
     }
 

@@ -26,6 +26,11 @@ export class SeaCow extends Entity {
       if (!isMunchSuccessful) {
         // move
         // context.simulation.entities
+        let a = Math.random();
+        if (a <= 0.25){
+          let nextField = context.simulation.tryGetField(context.field.x, context.field.y + 1)
+          
+        }
       }
     }
 

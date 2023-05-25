@@ -29,6 +29,7 @@
   },
   "sea-grass": {
     "maximum": 0.7,
-    "minimum": 0.1
+    "minimum": 0.1,
+    "rate_of_growth": 0.04 
   }
 }
