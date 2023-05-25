@@ -5,7 +5,7 @@ export interface Map {
 
 export interface Weather {
   iteration: number;
-  light: number;
+  type: string;
 }
 
 export interface SeaCow {

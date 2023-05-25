@@ -1,14 +1,7 @@
 import { SimulationContext } from '../engine/simulation-context';
 import { Entity } from './entity';
 
-function isFiledFilled(x: number, y: number): boolean{
-if (context.simulation.tryGetField(x, y) >= 1){
-  return true
-}
-else {
-  return false
-}
-}
+
 
 export class Algae extends Entity {
   public type: string = 'Algae';
@@ -69,4 +62,14 @@ export class Algae extends Entity {
   // growth rate / nitrate effect?
   // possible duplication of size within hours
   // 1 month to reach 1 fill
+
+  private isFieldFilled(context: SimulationContext ,x: number, y: number): boolean{
+    if (context.simulation.tryGetField(x, y) >= 1){
+      return true
+    }
+    else {
+      return false
+    }
+    }
 }
+//seagrass is help

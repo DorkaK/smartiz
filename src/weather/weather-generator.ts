@@ -1,3 +1,4 @@
+import { Configuration } from "src/configuration/configuration";
 import { Weather } from "./weather";
 
 export class WeatherGenerator {
@@ -7,8 +8,16 @@ export class WeatherGenerator {
         Weather.rainstorm,
         Weather.storm,
     ];
-
+    /**
+     *
+     */
+    constructor(private configuration: Configuration) {
+        
+    }
     public getWeather(iteration: number) {
+        this.configuration.weather[0]
         return this.possibleWeathers[Math.trunc(Math.random() * this.possibleWeathers.length)];
     }
 }
+//túl sok iteráció
+// ismeretlen típus

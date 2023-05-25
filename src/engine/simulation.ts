@@ -13,7 +13,7 @@ export class Simulation {
   // settings
   public configuration: Configuration;
 
-  public weatherGenerator: WeatherGenerator = new WeatherGenerator();
+  public weatherGenerator: WeatherGenerator;
 
   // output
   public *getEntities() {
@@ -61,7 +61,7 @@ export class Simulation {
    */
   public init(configuration: Configuration) {
     this.configuration = configuration;
-
+    this.weatherGenerator = new WeatherGenerator(configuration);
     for (let y = 0; y < configuration.map.height; y++) {
       const row: Field[] = [];
       this.fields.push(row);
