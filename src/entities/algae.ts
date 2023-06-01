@@ -26,33 +26,83 @@ export class Algae extends Entity {
       // active
       // make oxygen
       // grow
-      this.fill = this.fill * 1.2; // light level + get it from configuration
-      if (this.fill > 1) {
-        let extra = this.fill - 1;
-        this.fill = 1
+      const growth = this.fill * 1.2;
+
+	    if (growth <= 1){
+		    this.fill = growth;
+      }
+
+      if (growth > 1) {
+	      this.fill = 1;
+      }
+
         // go to next field
         // context.field.x, context.field.y
 
-        let nextField = context.simulation.tryGetField(context.field.x + 1, context.field.y)
-        if (nextField.fill < 1) {
-          x = context.field.x + 1
-          while (isFiledFilled(x, context.field.y) != true){
-            x = x + 1
+      if (this.fill == 1) {
+          let isThereAlgae = false
+          let nextField = context.simulation.tryGetField(context.field.x + 1, context.field.y)
+          if (nextField) {
+            for (const entity of nextField.entities) {
+             if (entity.type == 'Algae' && (entity as Algae).fill <= 1 - 0.01 && !isThereAlgae) {
+                (entity as Algae).fill += 0.01;
+                isThereAlgae = true;
+              }
+            }
+            if (!isThereAlgae){
+              const algae = new Algae();
+              context.field.entities.push(algae);
+            }
+            isThereAlgae = false;   
+          }
+
+          nextField = context.simulation.tryGetField(context.field.x - 1, context.field.y)
+          if (nextField) {
+
+            for (const entity of nextField.entities){
+              if (entity.type == 'Algae' && (entity as Algae).fill <= 1 - 0.01 && !isThereAlgae){
+                (entity as Algae).fill += 0.01;
+                isThereAlgae = true;
+              }
+            }
+            if (!isThereAlgae){
+              const algae = new Algae();
+              context.field.entities.push(algae);
+            }
+            isThereAlgae = false;
+          }
+
+          nextField = context.simulation.tryGetField(context.field.x, context.field.y + 1)
+          if (nextField) {
+            for (const entity of nextField.entities){
+              if (entity.type == 'Algae' && (entity as Algae).fill <= 1 - 0.01 && !isThereAlgae){
+                (entity as Algae).fill += 0.01;
+                isThereAlgae = true;
+              }
+            }
+            if (!isThereAlgae){
+              const algae = new Algae();
+              context.field.entities.push(algae);
+            }
+            isThereAlgae = false;
+          }
+
+          nextField = context.simulation.tryGetField(context.field.x, context.field.y + 1)
+          if (nextField) {
+            for (const entity of nextField.entities){
+              if (entity.type == 'Algae' && (entity as Algae).fill <= 1 - 0.01 && !isThereAlgae){
+                (entity as Algae).fill += 0.01;
+                isThereAlgae = true
+              }
+            }
+            if (!isThereAlgae){
+              const algae = new Algae();
+              context.field.entities.push(algae);
+            }
           }
         }
-        else {
-          
-
-        }
-
-        // no algae => add algae
-        // has algae => add to fill
-        // has algae fill 1 => next field
-        // no more field => overgrow => death / no action
-        // death => compost => less oxygen, more nitrogen
       }
-
-    } else {
+      else {
       // sleep
       // oxygen consumption
       // no oxygen => death
@@ -62,14 +112,6 @@ export class Algae extends Entity {
   // growth rate / nitrate effect?
   // possible duplication of size within hours
   // 1 month to reach 1 fill
-
-  private isFieldFilled(context: SimulationContext ,x: number, y: number): boolean{
-    if (context.simulation.tryGetField(x, y) >= 1){
-      return true
-    }
-    else {
-      return false
-    }
-    }
+  
 }
 //seagrass is help
