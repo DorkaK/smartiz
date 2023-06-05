@@ -18,6 +18,10 @@ export class WeatherGenerator {
         this.configuration.weather[0]
         return this.possibleWeathers[Math.trunc(Math.random() * this.possibleWeathers.length)];
     }
+    public getIteration(){
+        return this.configuration.weather[0]
+    }
 }
-//túl sok iteráció
-// ismeretlen típus
+
+//túl sok iteráció 
+//ismeretlen weather
