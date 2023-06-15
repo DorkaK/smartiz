@@ -2,7 +2,19 @@ import { SimulationContext } from '../engine/simulation-context';
 import { Entity } from './entity';
 
 export abstract class Plant extends Entity {
-  public fill: number;
+  private _fill: number;
+  public get fill(): number {
+    return this._fill;
+  }
+  public set fill(value: number) {
+    if (value < 0) {
+      debugger;
+    }
+    if (value > 1) {
+      debugger;
+    }
+    this._fill = value;
+  }
 
   protected abstract create(): Plant;
 
@@ -17,13 +29,16 @@ export abstract class Plant extends Entity {
   }
 
   protected growOnField(context: SimulationContext, x: number, y: number) {
-    let isThereAlready = false
+    let isThereAlready = false;
     const nextField = context.simulation.tryGetField(x, y);
 
     if (nextField) {
       for (const entity of nextField.entities) {
-        if (entity.type == this.type && (entity as Plant).fill <= 1 - 0.01 && !isThereAlready) {
-          (entity as Plant).fill += 0.01;
+        if (entity.type == this.type) {
+          const plant = entity as Plant;
+          if (plant.fill < 1) {
+            plant.fill += 0.01;
+          }
           isThereAlready = true;
           break;
         }

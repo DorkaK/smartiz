@@ -36,14 +36,16 @@ export class Simulation {
 
   /**
    * Fields with y and x coordinates.
-   * 
+   *
    * @example fields[y][x]
    */
   public fields: Field[][] = [];
 
   public getField(x: number, y: number): Field {
-    if (this.fields.length <= y) throw new Error('Y is outside of the simulation boundries.');
-    if (this.fields[y]!.length <= x) throw new Error('X is outside of the simulation boundries.');
+    if (this.fields.length <= y)
+      throw new Error('Y is outside of the simulation boundries.');
+    if (this.fields[y]!.length <= x)
+      throw new Error('X is outside of the simulation boundries.');
 
     return this.fields[y]![x]!;
   }
@@ -62,6 +64,9 @@ export class Simulation {
   public init(configuration: Configuration) {
     this.configuration = configuration;
     this.weatherGenerator = new WeatherGenerator(configuration);
+
+    let totalCow = 0;
+
     for (let y = 0; y < configuration.map.height; y++) {
       const row: Field[] = [];
       this.fields.push(row);
@@ -72,20 +77,37 @@ export class Simulation {
         const algae = new Algae();
         algae.fill =
           Math.random() *
-          (configuration.algae.maximum - configuration.algae.minimum) +
+            (configuration.algae.maximum - configuration.algae.minimum) +
           configuration.algae.minimum;
         field.entities.push(algae);
 
         const seaGrass = new SeaGrass();
-        seaGrass.fill = 
+        seaGrass.fill =
           Math.random() *
-          (configuration['sea-grass'].maximum - configuration['sea-grass'].minimum) +
+            (configuration['sea-grass'].maximum -
+              configuration['sea-grass'].minimum) +
           configuration['sea-grass'].minimum;
         field.entities.push(seaGrass);
+
+        const cows = Math.trunc(
+          Math.random() *
+            (configuration['sea-cow'].maximum -
+              configuration['sea-cow'].minimum) +
+            configuration['sea-cow'].minimum
+        );
+
+        for (let i = 0; i < cows; i++) {
+          // if (totalCow == 1) break;
+
+          field.entities.push(new SeaCow());
+          totalCow++;
+        }
 
         row.push(field);
       }
     }
+
+    console.log(`Starting cows: ${totalCow}`);
   }
 
   /**
@@ -94,7 +116,6 @@ export class Simulation {
    */
   public run(count: number) {
     for (let i = 0; i < count; i++) {
-      console.log(`iteration: ${i}`);
       // 8h iteration
       for (const entity of this.getFields()) {
         entity.step({
@@ -106,26 +127,38 @@ export class Simulation {
         });
       }
     }
+
+    let totalCow = 0;
+
+    for (const field of this.getFields()) {
+      for (const entity of field.entities) {
+        if (entity instanceof SeaCow) {
+          totalCow++;
+        }
+      }
+    }
+
+    console.log(`Final cows: ${totalCow}`);
   }
 
   /**
    * Calculate the current light level in the simulation.
    */
   private getLight(field: Field, iteration: number): number {
-    let light = 1;
+    const weather = this.weatherGenerator.getWeather(iteration);
+
+    let light = iteration % 3 != 0 ? weather?.light || 1 : 0;
 
     // Multiply with algae fill, because of opacity
     for (const entity of field.entities) {
-      if (entity.type === 'Algae') {
-        light *= (<Algae>entity).opacity;
+      if (entity instanceof Algae) {
+        light *= entity.opacity;
       }
     }
 
-    const weather = this.weatherGenerator.getWeather(iteration);
-    // TODO: Weather
-    // this.configuration
-    // TODO: Day part
-    // iteration
+    if (light < 0) {
+      debugger;
+    }
 
     return light;
   }

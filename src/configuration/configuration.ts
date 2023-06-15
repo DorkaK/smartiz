@@ -11,6 +11,8 @@ export interface Weather {
 export interface SeaCow {
   maximum: number;
   minimum: number;
+  algaeEnergy: number;
+  maxSteps: number;
 }
 
 export interface Algae {
@@ -22,7 +24,7 @@ export interface Algae {
 export interface SeaGrass {
   maximum: number;
   minimum: number;
-  rate_of_growth : number;
+  rate_of_growth: number;
   fill: number;
 }
 
@@ -31,6 +33,6 @@ export interface Configuration {
   map: Map;
   weather: Weather[];
   'sea-cow': SeaCow;
-  'sea-grass' : SeaGrass;
+  'sea-grass': SeaGrass;
   algae: Algae;
 }

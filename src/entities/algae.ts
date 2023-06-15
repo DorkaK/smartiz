@@ -26,7 +26,7 @@ export class Algae extends Plant {
       // active
       // make oxygen
       // grow
-      const growth = this.fill * 1.2; // should be coming from config
+      const growth = Math.min(1, this.fill * 1.2); // should be coming from config
 
       this.grow(context, growth);
     } else {

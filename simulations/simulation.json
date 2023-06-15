@@ -1,35 +1,24 @@
 {
-  "iterations": 38,
+  "iterations": 1095,
   "map": {
-    "width": 3,
-    "height": 3
+    "width": 30,
+    "height": 30
   },
-  "weather": [
-    {
-      "iteration": 30,
-      "light": 1
-    },
-    {
-      "iteration": 3,
-      "light": 0.2
-    },
-    {
-      "iteration": 5,
-      "light": 1.5
-    }
-  ],
+  "weather": [],
   "sea-cow": {
-    "maximum": 10,
-    "minimum": 0
+    "maximum": 3,
+    "minimum": -1,
+    "algaeEnergy": 0.05,
+    "maxSteps": 5
   },
   "algae": {
-    "maximum": 0.2,
+    "maximum": 0.3,
     "minimum": 0.1,
-    "minimumLightToGrow": 0.5
+    "minimumLightToGrow": 0.25
   },
   "sea-grass": {
-    "maximum": 0.7,
+    "maximum": 0.3,
     "minimum": 0.1,
-    "rate_of_growth": 0.04 
+    "rate_of_growth": 0.02
   }
 }

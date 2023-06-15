@@ -25,17 +25,15 @@ const configuration = <Configuration>(
 // Initialize the simulation from the configuration
 simulation.init(configuration);
 
-simulation.draw();
+// simulation.draw();
 
 // Run the simulation
 simulation.run(configuration.iterations);
 
-simulation.draw();
+// simulation.draw();
 
 // Write the final state of the simulation to '../simulations/result.json'
 fs.writeFileSync(
   path.join(__dirname, '../simulations/result.json'),
   JSON.stringify(simulation.fields, undefined, 2)
 );
-
-console.log('end');
