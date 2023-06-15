@@ -19,7 +19,10 @@ export class Algae extends Plant {
 
   public override step(context: SimulationContext): void {
     // light sensitive if
-    if (context.light / this.opacity >= context.simulation.configuration.algae.minimumLightToGrow) {
+    if (
+      context.light / this.opacity >=
+      context.simulation.configuration.algae.minimumLightToGrow
+    ) {
       // active
       // make oxygen
       // grow
@@ -36,6 +39,5 @@ export class Algae extends Plant {
   // growth rate / nitrate effect?
   // possible duplication of size within hours
   // 1 month to reach 1 fill
-
 }
 //seagrass is help
