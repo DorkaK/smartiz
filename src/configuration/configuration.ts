@@ -23,6 +23,7 @@ export interface SeaGrass {
   maximum: number;
   minimum: number;
   rate_of_growth : number;
+  fill: number;
 }
 
 export interface Configuration {
