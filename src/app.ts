@@ -22,13 +22,32 @@ const configuration = <Configuration>(
   )
 );
 
-// Initialize the simulation from the configuration
-simulation.init(configuration);
+// const parameter = [0.05, 0.1, 0.15];
+// const parameter = [0.1, 0.25, 0.5];
+const parameter = [1, 5, 10];
+const result = [0, 0, 0];
 
-// simulation.draw();
+const runCount = 3;
 
-// Run the simulation
-simulation.run(configuration.iterations);
+for (let e = 0; e < parameter.length; e++) {
+  for (let i = 0; i < runCount; i++) {
+    //configuration['sea-cow'].algaeEnergy = parameter[e]!;
+    //configuration.algae.minimumLightToGrow = parameter[e]!;
+    configuration['sea-cow'].maxSteps = parameter[e]!;
+
+    // Initialize the simulation from the configuration
+    simulation.init(configuration);
+
+    // simulation.draw();
+
+    // Run the simulation
+    simulation.run(configuration.iterations);
+
+    result[e] += simulation.endCows / simulation.startCows;
+  }
+}
+
+console.log(result.map((m) => m / runCount));
 
 // simulation.draw();
 

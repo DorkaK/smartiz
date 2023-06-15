@@ -15,6 +15,9 @@ export class Simulation {
 
   public weatherGenerator: WeatherGenerator;
 
+  public startCows: number;
+  public endCows: number;
+
   // output
   public *getEntities() {
     for (const row of this.fields) {
@@ -107,6 +110,7 @@ export class Simulation {
       }
     }
 
+    this.startCows = totalCow;
     console.log(`Starting cows: ${totalCow}`);
   }
 
@@ -137,6 +141,8 @@ export class Simulation {
         }
       }
     }
+
+    this.endCows = totalCow;
 
     console.log(`Final cows: ${totalCow}`);
   }
